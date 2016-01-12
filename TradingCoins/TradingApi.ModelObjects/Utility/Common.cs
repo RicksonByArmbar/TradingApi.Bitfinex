@@ -10,11 +10,11 @@ namespace TradingApi.ModelObjects.Utility
    {
       public static long UnixTimeStampUtc()
       {
-         Int32 unixTimeStamp;
+         long unixTimeStamp;
          DateTime currentTime = DateTime.Now;
          DateTime dt = currentTime.ToUniversalTime();
          DateTime unixEpoch = new DateTime(1970, 1, 1);
-         unixTimeStamp = (Int32)(dt.Subtract(unixEpoch)).TotalSeconds;
+         unixTimeStamp = (long)((dt.Subtract(unixEpoch)).TotalSeconds * 10000D);
          return unixTimeStamp;
       }
 
