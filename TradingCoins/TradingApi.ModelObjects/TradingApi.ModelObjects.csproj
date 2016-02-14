@@ -72,7 +72,6 @@
     <Compile Include="Bitfinex\Json\BitfinexNewOrderResponse.cs" />
     <Compile Include="Bitfinex\Json\BitfinexOrderBookGet.cs" />
     <Compile Include="Bitfinex\Json\BitfinexNewOrderPost.cs" />
-    <Compile Include="Bitfinex\Json\BitfinexOrdersPost.cs" />
     <Compile Include="Bitfinex\Json\BitfinexOrderStatusPost.cs" />
     <Compile Include="Bitfinex\Json\BitfinexOrderStatusResponse.cs" />
     <Compile Include="Bitfinex\Json\BitfinexPostBase.cs" />

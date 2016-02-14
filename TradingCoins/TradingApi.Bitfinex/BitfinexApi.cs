@@ -201,7 +201,7 @@ namespace TradingApi.Bitfinex
             }
         }
 
-        public BitfinexNewOrderResponse[] SendOrder(BitfinexNewOrderPost newOrder)
+        public BitfinexNewOrderResponse SendOrder(BitfinexNewOrderPost newOrder)
         {
             IRestResponse response = null;
             try
@@ -211,8 +211,9 @@ namespace TradingApi.Bitfinex
 
                 var client = GetRestClient(NewOrderRequestUrl);
                 response = GetRestResponse(client, newOrder);
+                Logger.Log.InfoFormat("New Order Response: {0}", response.Content);
 
-                var newOrderResponseObj = JsonConvert.DeserializeObject<BitfinexNewOrderResponse[]>(response.Content);
+                var newOrderResponseObj = JsonConvert.DeserializeObject<BitfinexNewOrderResponse>(response.Content);
                 //(newOrderResponseObj);
 
                 Logger.Log.InfoFormat("Sending New Order: {0}", newOrder.ToString());
@@ -228,7 +229,7 @@ namespace TradingApi.Bitfinex
             }
         }
 
-        public BitfinexNewOrderResponse[] SendOrder(string symbol, string amount, string price, string exchange, string side, string type, bool isHidden)
+        public BitfinexNewOrderResponse SendOrder(string symbol, string amount, string price, string exchange, string side, string type, bool isHidden)
         {
             var newOrder = new BitfinexNewOrderPost()
             {
@@ -243,17 +244,17 @@ namespace TradingApi.Bitfinex
             return SendOrder(newOrder);
         }
 
-        public BitfinexNewOrderResponse[] SendSimpleLimit(string symbol, string amount, string price, string side, bool isHidden = false)
+        public BitfinexNewOrderResponse SendSimpleLimit(string symbol, string amount, string price, string side, bool isHidden = false)
         {
             return SendOrder(symbol, amount, price, DefaulOrderExchangeType, side, DefaultLimitType, isHidden);
         }
 
-        public BitfinexNewOrderResponse[] SendSimpleLimitBuy(string symbol, string amount, string price, bool isHidden = false)
+        public BitfinexNewOrderResponse SendSimpleLimitBuy(string symbol, string amount, string price, bool isHidden = false)
         {
             return SendOrder(symbol, amount, price, DefaulOrderExchangeType, Buy, DefaultLimitType, isHidden);
         }
 
-        public BitfinexNewOrderResponse[] SendSimpleLimitSell(string symbol, string amount, string price, bool isHidden = false)
+        public BitfinexNewOrderResponse SendSimpleLimitSell(string symbol, string amount, string price, bool isHidden = false)
         {
             return SendOrder(symbol, amount, price, DefaulOrderExchangeType, Sell, DefaultLimitType, isHidden);
         }
